@@ -34,16 +34,12 @@ end
 # has been run.
 include_recipe "platform-specific"
 
-# Allows us to mock out search in chef-solo
-include_recipe "chef-solo-search"
-
 # cookbooks that require the following should explicitly depend on them
 # include_recipe "git"
 include_recipe "perl"
 
 # not a good way to get around the following dependencies
 include_recipe "munin-stub::stub"
-# include_recipe "users::opscode"
 
 # Ensure we can pull from private GitHub repos
 include_recipe "opscode-dev-shim::github"
