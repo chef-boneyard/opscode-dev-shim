@@ -12,7 +12,7 @@
 node.set[:dev_mode] = true
 
 # act like preprod
-node.set[:app_environment] = "rs-preprod"
+node.set[:app_environment] = "dev"
 
 # Erlang-related
 # TODO move these to opscode-erlang wrapper cookbook
