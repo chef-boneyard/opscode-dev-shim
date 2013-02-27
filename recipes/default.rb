@@ -30,6 +30,9 @@ service "rsyslog" do
   action :nothing
 end
 
+# Stub out searches with `searchef`
+include_recipe "opscode-dev-shim::search_stubs"
+
 # pretty much does what it says; most import thing is ensuring `apt-get update`
 # has been run.
 include_recipe "platform-specific"

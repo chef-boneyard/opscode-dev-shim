@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: opscode-dev-shim
+# Recipe:: github
+#
+# Copyright (C) 2013 Opscode, Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
 # Allows us to properly clone private repositories on GitHub
 
 ruby_block "disable strict host key checking for github.com" do
@@ -33,20 +42,6 @@ end
 # TODO - make SSH_AUTH_SOCK work ALL THE TIME!!
 if ENV['SSH_AUTH_SOCK'].nil?
   Chef::Log.warn("SSH_AUTH_SOCK appears to be unset. Falling back to writing out deploy key instead (sadpanda).")
-
-  stub_search(:users, 'groups:opscode').to_return([
-    {
-      "comment" => "Opscode deploy user",
-      "groups" => [
-        "opscode"
-      ],
-      "ssh_keys" => [
-      ],
-      "id" => "opscode",
-      "uid" => 5049,
-      "shell" => "/bin/bash"
-    }
-  ])
 
   include_recipe "users::opscode"
 

@@ -1,5 +1,7 @@
 require 'berkshelf/vagrant'
 
+OMNIBUS_CHEF_VERSION = "11.4.0"
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -18,8 +20,8 @@ Vagrant::Config.run do |config|
 
   config.vm.host_name = "opscode-dev-shim-berkshelf"
 
-  config.vm.box = "opscode-ubuntu-10.04"
-  config.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_chef-10.18.2.box"
+  config.vm.box = "canonical-ubuntu-12.04"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -49,6 +51,16 @@ Vagrant::Config.run do |config|
   config.ssh.timeout   = 120
   # Enable SSH agent forwarding for git clones
   config.ssh.forward_agent = true
+
+  config.vm.provision :shell, :inline => <<-INSTALL_OMNIBUS
+  if [ ! -d "/opt/chef" ] ||
+     [ ! $(chef-solo --v | awk "{print \\$2}") = "#{OMNIBUS_CHEF_VERSION}" ]
+  then
+    wget -qO- https://www.opscode.com/chef/install.sh | sudo bash -s -- -v #{OMNIBUS_CHEF_VERSION}
+  else
+    echo "Chef #{OMNIBUS_CHEF_VERSION} already installed...skipping installation."
+  fi
+  INSTALL_OMNIBUS
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
