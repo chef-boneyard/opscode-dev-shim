@@ -34,20 +34,6 @@ end
 if ENV['SSH_AUTH_SOCK'].nil?
   Chef::Log.warn("SSH_AUTH_SOCK appears to be unset. Falling back to writing out deploy key instead (sadpanda).")
 
-  stub_search(:users, 'groups:opscode').to_return([
-    {
-      "comment" => "Opscode deploy user",
-      "groups" => [
-        "opscode"
-      ],
-      "ssh_keys" => [
-      ],
-      "id" => "opscode",
-      "uid" => 5049,
-      "shell" => "/bin/bash"
-    }
-  ])
-
   include_recipe "users::opscode"
 
   cookbook_file "/home/opscode/.ssh/github" do
