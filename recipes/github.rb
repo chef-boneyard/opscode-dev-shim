@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: opscode-dev-shim
+# Recipe:: github
+#
+# Copyright (C) 2013 Opscode, Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
 # Allows us to properly clone private repositories on GitHub
 
 ruby_block "disable strict host key checking for github.com" do
