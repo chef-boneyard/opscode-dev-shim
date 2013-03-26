@@ -43,3 +43,6 @@ stub_search("webui-public-keys", '*:*').to_return([
     }
   }
 ])
+
+# Nagios nodes
+stub_search("node", "role:monitoring-nagios").to_return([node_stub("nagios-stub-host")])
