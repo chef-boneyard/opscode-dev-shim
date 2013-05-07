@@ -4,13 +4,15 @@ maintainer_email "schisamo@opscode.com"
 license          "All rights reserved"
 description      "Installs/Configures opscode-dev-shim"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.1"
+version          "0.1.2"
 
 # internal cookbooks
 depends "users", "~> 0.1.6"
 depends "apt", "~> 1.9.0"
 depends "platform-specific", "~> 0.0.1"
-depends "munin-stub", "~> 0.8.1"
 depends "opscode-github", "~> 0.7.0"
 depends "git"
+# This is the munin cookbook as found in opscode-platform-cookbooks
+# with included stubbing abilities.
+depends "munin", "~> 0.8.1"
 depends "perl"
