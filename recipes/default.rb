@@ -23,6 +23,9 @@ node.set[:rebar_version] = "2.0.0"
 # TODO move these to opscode-database wrapper cookbook
 node.set[:opscode][:database][:type] = "mysql"
 
+# Request stubbing of munin
+node.set[:munin][:stub] = true
+
 # We notify the rsyslog all over our coookbooks. Declaring this resource
 # ensures there is always a service to notify.
 service "rsyslog" do
@@ -40,9 +43,6 @@ include_recipe "platform-specific"
 # cookbooks that require the following should explicitly depend on them
 # include_recipe "git"
 include_recipe "perl"
-
-# not a good way to get around the following dependencies
-include_recipe "munin-stub::stub"
 
 # Ensure we can pull from private GitHub repos
 include_recipe "opscode-dev-shim::github"
