@@ -8,7 +8,7 @@ version          "0.1.2"
 
 # internal cookbooks
 depends "users", "~> 0.1.6"
-depends "apt", "~> 1.9.0"
+depends "apt"
 depends "platform-specific", "~> 0.0.1"
 depends "opscode-github", "~> 0.7.0"
 depends "git"
