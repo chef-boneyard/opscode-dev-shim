@@ -46,3 +46,6 @@ stub_search("webui-public-keys", '*:*').to_return([
 
 # Nagios nodes
 stub_search("node", "role:monitoring-nagios").to_return([node_stub("nagios-stub-host")])
+
+# This is the search currently used by the opscode-bifrost cookbook
+stub_search(:node, "role:monitoring-munin* OR role:monitoring-nagios OR role:seabuild-munin").to_return([node_stub("nagios-stub-host")])
