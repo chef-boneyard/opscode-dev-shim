@@ -11,8 +11,12 @@
 # like OpscodeHelpers.dev_mode? (from the opscode_extensions cookbook)
 node.set[:dev_mode] = true
 
-# act like preprod
-node.set[:app_environment] = "dev"
+# Recent modifications move to using the actual environment name in our platform cookbooks - however
+# earlier versions of vagrant & chef-solo don't support setting that in the
+# chef-solo config. Provide a sane default of 'dev' for both :app_environment attribute
+# and the node's environment, if nothing has been provided.
+node.set[:app_environment] = "dev" unless node[:app_environment]
+node.chef_environment(node[:app_environment]) unless node.chef_environment != "_default"
 
 # Erlang-related
 # TODO move these to opscode-erlang wrapper cookbook
