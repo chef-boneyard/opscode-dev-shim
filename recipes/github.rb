@@ -46,7 +46,7 @@ if ENV['SSH_AUTH_SOCK'].nil?
   include_recipe "users::opscode"
 
   cookbook_file "/home/opscode/.ssh/github" do
-    source "opscode-github-sshkey-20130104"
+    source "opscode-github-sshkey-20140312"
     cookbook "opscode-github"
     owner "opscode"
     group "opscode"
