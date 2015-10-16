@@ -10,9 +10,9 @@ version          "0.1.4"
 depends "users", "~> 0.1.6"
 depends "apt"
 depends "platform-specific", "~> 0.0.1"
-depends "opscode-github", "~> 0.7.0"
+depends "opscode-github"
 depends "git"
 # This is the munin cookbook as found in opscode-platform-cookbooks
 # with included stubbing abilities.
-depends "munin", "~> 0.8.1"
+depends "munin", "~> 0.8.9"
 depends "perl"
